@@ -1,0 +1,147 @@
+
+
+
+
+
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Review System</title>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  />                                     
+     <%- include('_bootstrap_css') %>
+
+     
+    <style>
+      body{
+        background-color: rgb(63, 168, 182);
+        /* background-color: rgb(18, 112, 23); */
+      }
+      /* $purple-gradient: linear-gradient(45deg, rgba(87,29,146,1) 0%,rgba(172,25,102,1) 100%); */
+      /* $purple-gradient: linear-gradient(to bottom right, #C90A6D, #FF48A0); */
+        .user-card {
+            background-color: rgb(228, 220, 220);
+          /* min-width: 350px; */
+          min-width: auto;
+          /* max-width: max-content; */
+          margin: 10px 20px 10px 0px;
+          text-align: center;
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          overflow: hidden;
+          overflow-wrap: break-word;
+        }
+
+        .user-icon {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          margin-bottom: 15px;
+          object-fit: cover;
+        }
+
+        .card-btn {
+          color: #fff;
+          width: 50px;
+          /* height: 42px; */
+          height: auto;
+          outline: none;
+          border: none;
+          display: block;
+          cursor: pointer;
+          font-weight: 300;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 70px;
+          box-shadow: 0 13px 26px rgba(#000, .16), 0 3px 6px rgba(#000, .16);
+          background: linear-gradient(45deg, rgba(87,29,146,1) 0%,rgba(172,25,102,1) 100%);
+          font-weight: 300;
+          text-align: left;
+          /* padding-left: 5px !important;   */
+          padding-right: 5px !important;
+          text-align: center;
+		    }
+
+        .add-button, a{
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .add-button:hover{
+          text-decoration: none;
+          color: inherit;
+        }
+        
+
+    </style>
+
+
+</head>
+<body>
+
+<%- include('_header') %>
+
+
+    <div class="container">
+
+      <div class="container d-flex mt-3">
+        <h3 class="text-light" >Employee List</h3>
+        <button class="btn mr-0 ml-auto btn-warning"><a class="add-button" href="/employees/addEmployee">Add Employee</a></button>
+      </div>
+      
+        <div class="row">
+          <%  list.forEach(emp => { %>
+            <div class="col-md-4 col-sm-12">
+              <div class="user-card">
+                <img src="assets/userimage.png" alt="User Icon" class="user-icon">
+                <!-- <h5>Employee Name</h5> -->
+                <h5 class="mb-3"><%= emp.empName %></h5>
+                <div class="btn-group">
+                  <!-- <button type="button" class="card-btn btn btn-primary"><a href="">Assign review</a></button>
+                  <button type="button" class="card-btn btn btn-secondary"><a href="/reviews">See reviews</a></button>
+                  <button type="button" class="card-btn btn btn-success"><a href="/employee/updateEmployee/<%= emp._id %>">Update employee</a></button>
+                  <button type="button" class="card-btn btn btn-warning"><a href="/reviews/giveReview">Give review</a></button> -->
+                  <button type="button" title="Assign Review" class="card-btn btn btn-primary">
+                    <a href="/assignReview/<%= emp._id %>">
+                      <i class="fas fa-tasks"></i>
+                    </a>
+                  </button>
+                  <button type="button" title="See Review" class="card-btn btn btn-secondary">
+                    <a href="/employee/details/<%= emp._id %>">
+                      <i class="fas fa-eye"></i>
+                    </a>
+                  </button>
+                  <button type="button" title="Update Employee" class="card-btn btn btn-success">
+                    <a href="/employee/updateEmployee/<%= emp._id %>">
+                      <i class="fas fa-pen-nib"></i>
+                    </a>
+                  </button>
+                  <button type="button" title="Update Employee" class="card-btn btn btn-success">
+                    <a href="/employee/deleteEmployee/<%= emp._id %>">
+                      <i class="fas fa-trash"></i>
+                    </a>
+                  </button>
+                  <button type="button" title="Give Review" class="card-btn btn btn-warning">
+                    <a href="/reviews/giveReview">
+                      <i class="fas fa-keyboard"></i>
+                    </a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </div>
+
+</body>
+</html>
+
+
+
+

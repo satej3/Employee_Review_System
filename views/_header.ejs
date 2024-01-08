@@ -1,0 +1,125 @@
+<!-- first line of page.. which consists logo, user details, logout button, user type(Admin or employee) -->
+
+
+<style>
+
+    .popdown-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .popdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 180px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px;
+        padding: 8px;
+        right: 0;
+        left: auto;
+        top: 40px;
+        color: black;
+        font-weight: bolder;
+    }
+
+    .popdown-container:hover .popdown-content {
+        display: block;
+    }
+
+    .sign-out{
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .nav-link{
+        color: white !important;
+        font-weight: bolder ;
+    }
+
+    .nav-link:hover{
+        color: blue !important;
+        font-weight: bolder ;
+    }
+
+</style>
+
+<div class="bg-dark text-light p-1 container-fluid d-flex justify-content-between align-items-center">
+        <div class="col-3">
+            <h4>Employee Review System</h4>
+        </div>
+
+        <div class="col-6 d-flex justify-content-between align-items-center">
+            <ul class="nav mr-5 ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/employees">Employee</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reviews">Review</a>
+                </li>
+            </ul>
+
+            <div class="popdown-container" id="userPopdown">
+                <button type="button" class="btn text-light "  onclick="togglePopdown()"  >
+                    <i class="fas fa-user fa-lg"></i>
+                </button>
+                <div class="popdown-content">
+                    
+                    <p>Welcome, <span id="userNamePlaceholder"></span>!</p>
+  <p>User Type: <span id="isAdminPlaceholder"></span></p>
+  <hr>
+                    <button class="btn btn-danger sign-out">
+                        <a href="/logout">Log Out</a>
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+<script>
+    function togglePopdown() {
+    var popdown = document.getElementById('userPopdown');
+    popdown.classList.toggle('active');
+}
+
+
+// Close popdown when clicking outside of it
+document.addEventListener('click', function(event) {
+    var popdown = document.getElementById('userPopdown');
+    if (!popdown.contains(event.target)) {
+        popdown.classList.remove('active');
+    }
+});
+
+//call header api to render values of session..
+$.ajax({
+  url: '/header',
+  method: 'GET'
+}).done(function(data) {
+  console.log("data in return = ", data);
+  var userName = data.userName;
+  var userId = data.userId;
+  var isAdmin = data.isAdmin;
+
+  document.getElementById('userNamePlaceholder').innerText = userName;
+  if(isAdmin)
+    document.getElementById('isAdminPlaceholder').innerText = 'Admin';
+  else
+  document.getElementById('isAdminPlaceholder').innerText = 'Employee';
+}).fail(function(error) {
+  console.error('Error fetching data:', error);
+});
+
+
+
+</script>
+
+
+

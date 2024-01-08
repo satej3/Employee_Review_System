@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement App By Satej</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        body {
+            height: 80vh;
+        }
+        
+    </style>
+</head>
+<body>
+
+    
+    <div class="bg-dark col-12 d-flex mb-5">
+        <div >
+            <h4 class="text-white pt-1">Employee Review System</h4>
+        </div>
+       
+    </div>
+
+    <!-- <div class="container"> -->
+    <div class="h-100 d-flex align-items-center justify-content-center ">
+        
+        <form action="/login" class="ml-auto mr-auto table-bordered rounded-5 text-center col-md-4" method="post">
+           
+            <h2 class="mt-2">Login</h2>
+            <div class="form-group mt-4 col-md-12">
+                <!-- <label for="username" class="col-md-3" >User Name: </label> -->
+                <input class="form-control" type="text" placeholder="User Name" name="userName" id="userName" />
+            </div>
+            <div class="form-group mt-4 col-md-12">
+                <!-- <label for="password" class="col-md-3" >Password: </label> -->
+                <input class="form-control" type="password" placeholder="Password" name="password" id="password" />
+            </div>
+            <input type="submit" class="btn btn-primary mb-3" value="Log In" />
+
+            <% if (message) { %>
+                <p class="alert alert-danger" role="alert" ><%= message %></p>
+            <% } %>
+            
+            
+        </form>
+
+    </div>
+
+</body>
+</html>
+
+

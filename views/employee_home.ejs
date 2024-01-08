@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Review System</title>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  />                                     
+     <%- include('_bootstrap_css') %>
+
+     
+    <style>
+      body{
+        background-color: rgb(63, 168, 182);
+        /* background-color: rgb(18, 112, 23); */
+      }
+      
+      .user-card {
+            background-color: rgb(228, 220, 220);
+          /* max-width: 350px; */
+          max-width: max-content;
+          margin-top: 30px;
+          /* margin: 20px auto; */
+          /* text-align: center; */
+          padding: 20px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+        }
+
+        .user-icon {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          margin-bottom: 15px;
+          object-fit: cover;
+        }
+
+        /* .btn-group button{
+          margin: 5px ;
+          margin-top: 15px;
+          border-radius: 50%;
+        } */
+
+        .card-btn {
+          color: #fff;
+          width: 80px;
+          /* height: 42px; */
+          height: auto;
+          outline: none;
+          border: none;
+          display: block;
+          cursor: pointer;
+          font-weight: 300;
+          margin-left: auto;
+          margin-right: auto;
+          border-radius: 70px;
+          box-shadow: 0 13px 26px rgba(#000, .16), 0 3px 6px rgba(#000, .16);
+          background: linear-gradient(45deg, rgba(87,29,146,1) 0%,rgba(172,25,102,1) 100%);
+          /* font-weight: 300; */
+          text-align: left;
+          /* padding-left: 5px !important;   */
+          padding-right: 5px !important;
+		    }
+
+        a, a:hover{
+          text-decoration: none;
+          color: inherit;
+        }
+        td{
+          padding: 10px 20px ;
+          border-top: 2px solid black;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <%- include('_empLoginHeader') %>
+
+    <div class="container">
+
+      <div class="container d-flex mt-3">
+        <h3 class="text-light" >Employee Dashboard</h3>
+      </div>
+        
+        <% if(message) { %>
+          <p><%= message %></p>
+          <% } else{ %>
+        <div class="row col-12">
+            <div class="col-6 ">
+                <!-- my reviews goes here.. list of reviews i got -->
+                <table class="table table-bordered bg-light text-center">
+                    <thead>
+                      <th>Employee Name</th>
+                      <th>Action</th>
+                    </thead>
+                <% if(!employees || employees.length <= 0) { %>
+                    <tr>
+                      <td> No Pending Reviews found for you..</td>
+                    </tr>
+                  <% } else {%>                
+                    <%  employees.forEach(emp => { %>
+                      <tr>
+                        <td> <%= emp.empName %></td>
+                        <td>
+                          <button class="btn btn-success">
+                            <a href="/employee/home/giveReview/<%= emp._id%>">Give Review</a>
+                          </button>
+                        </td>
+                      </tr>
+                    <% }); %>
+                  <% } %>
+                </table>
+            </div>
+
+
+            <div class="col-6 ">
+              <table class="table table-bordered bg-light text-center">
+                <thead>
+                  <th>Reviews</th>
+                </thead>
+                <!-- list of reviews i have to give.. -->
+                <% if(!reviews || reviews.length <= 0) { %>
+                  <tr>
+                    <td> No reviews found for this employee.</td>
+                  </tr>
+                <% } else {%>                
+                  <%  reviews.forEach(rev => { %>
+                    <tr>
+                      <td> <%= rev.reviewDetails %></td>
+                    </tr>
+                  <% }); %>
+                <% } %>
+               
+              </table>
+            </div>
+
+        </div>
+        <% } %>
+
+      </div>
+
+
+</body>
+</html>
+
+
+
+

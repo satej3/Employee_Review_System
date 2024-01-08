@@ -1,0 +1,86 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Review System</title>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  />                                     
+     <%- include('_bootstrap_css') %>
+
+     
+    <style>
+      body{
+        background-color: rgb(63, 168, 182);
+        /* background-color: rgb(18, 112, 23); */
+      }
+      
+    </style>
+
+
+</head>
+<body>
+
+    <%
+  function formatDate(date) {
+    const options = { 
+      day: '2-digit', 
+      month: '2-digit', 
+      year: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    };
+    const formattedDate = new Date(date).toLocaleDateString('en-US', options) ;
+    return formattedDate;
+  }
+%>
+
+
+    <%- include('_header') %>
+
+    <div class="container">
+
+        <div class="container d-flex mt-3">
+            <h3 class="text-light" >Review List</h3>
+        </div>
+      
+        <div class="row mt-3">
+            <table class="table bg-light">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Review</th>
+                        <th>Review Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% list.forEach(review => { %>
+                        <tr>
+                            <% if (review.reviewForEmpId || review.reviewForEmpId != undefined) { %>
+                                <td><%= review.reviewForEmpId.empName %></td>
+                                <td><%= review.reviewDetails %></td>
+                                <td><%= review.updatedAt ? formatDate(review.updatedAt) : '' %></td>
+                            <% } %>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+      </div>
+
+     
+
+</body>
+</html>
+
+
+
+

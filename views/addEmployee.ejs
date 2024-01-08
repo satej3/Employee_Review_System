@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Review System</title>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"  />                                     
+     <%- include('_bootstrap_css') %>
+
+     
+    <style>
+      body{
+        background-color: rgb(63, 168, 182);
+      }
+        
+
+    </style>
+
+
+</head>
+<body>
+    <%- include('_header') %>
+
+    <div class="container">
+
+        <div class="container d-flex mt-3">
+            <h3 class="text-light" >Add Employee </h3>
+        </div>
+      
+        <div class="container align-items-center col-md-12">
+            <form class="form col-md-5 ml-auto mr-auto" action="/add_employee" method="post">
+                <div class="form-group">
+                    <input class="form-control" type="text" required placeholder="Employee Name" name="empName" id="empName">
+                </div>
+    
+                <div class="form-group">
+                    <input class="form-control" type="email" required placeholder="Email Address" name="userName" id="userName">
+                </div>
+    
+                <div class="form-group">
+                    <input class="form-control" type="password" minlength="6"  required placeholder="Password" name="password" id="password">
+                </div>
+    
+                <div class="form-group">
+                    <input class="form-control" type="text" required maxlength="10" placeholder="Mobile No" name="mobileNo" id="mobileNo">
+                </div>
+    
+                <div class="form-group">
+                    <select class="form-control" required name="isAdmin" id="isAdmin">
+                        <option disabled selected >Select User Type</option>
+                        <option value="true">Admin</option>
+                        <option value="false">Employee</option>
+                    </select>
+                </div>
+    
+                <div class="text-center ">
+                    <button class="btn btn-large form-group mr-5 bg-light"><a href="/employees" style="text-decoration: none; color: black;">Back</a></button>
+                    <input class="btn btn-warning btn-large form-group" type="submit" value="Save">
+                </div>
+    
+            </form>
+        </div>
+
+      </div>
+
+</body>
+</html>
+
+
+
+
